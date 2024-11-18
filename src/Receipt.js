@@ -1,9 +1,33 @@
-import React, { useRef } from 'react'; // useState 제거
+import React, { useRef, useEffect, useState } from 'react'; // useState와 useEffect 추가
 import html2canvas from 'html2canvas';
 import { QRCodeCanvas } from 'qrcode.react';
 
-const ReceiptPage = ({ items, name, date }) => {
+const ReceiptPage = () => {
     const receiptRef = useRef();
+    const [items, setItems] = useState([]);
+    const [name, setName] = useState('');
+    const [date, setDate] = useState('');
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const itemsData = params.get('items');
+        const nameParam = params.get('name');
+        const dateParam = params.get('date');
+
+        if (itemsData) {
+            try {
+                setItems(JSON.parse(decodeURIComponent(itemsData)));
+            } catch (error) {
+                console.error("Error parsing items data:", error);
+            }
+        }
+        if (nameParam) {
+            setName(decodeURIComponent(nameParam));
+        }
+        if (dateParam) {
+            setDate(decodeURIComponent(dateParam));
+        }
+    }, []);
 
     const handleDownload = () => {
         html2canvas(receiptRef.current, { useCORS: true, backgroundColor: null }).then((canvas) => {
@@ -15,10 +39,10 @@ const ReceiptPage = ({ items, name, date }) => {
         });
     };
 
-    // QR 코드에 포함할 URL 생성 (수정된 부분)
+    // QR 코드에 포함할 URL 생성
     const generateQRCodeValue = () => {
         const itemsData = JSON.stringify(items);
-        const baseUrl = "https://elisaohh.github.io/"; // 변경된 부분
+        const baseUrl = "https://elisaohh.github.io/"; // 영수증 페이지 URL
         return `${baseUrl}?items=${encodeURIComponent(itemsData)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}`;
     };
 
@@ -28,12 +52,16 @@ const ReceiptPage = ({ items, name, date }) => {
         <div style={styles.receiptContainer} ref={receiptRef}>
             <h1 style={styles.title}>나만의 영수증</h1>
             <div>
-                {items.map((item, index) => (
-                    <div key={index} style={styles.receiptItem}>
-                        <span style={styles.text}>{item.name}</span>
-                        <span style={styles.text}>{parseFloat(item.price).toLocaleString()}원</span>
-                    </div>
-                ))}
+                {items.length > 0 ? (
+                    items.map((item, index) => (
+                        <div key={index} style={styles.receiptItem}>
+                            <span style={styles.text}>{item.name}</span>
+                            <span style={styles.text}>{parseFloat(item.price).toLocaleString()}원</span>
+                        </div>
+                    ))
+                ) : (
+                    <p>영수증 정보가 없습니다.</p>
+                )}
                 <div style={styles.total}>
                     <span style={styles.text}>합계:</span>
                     <span style={styles.text}>{total.toLocaleString()}원</span>
@@ -47,8 +75,11 @@ const ReceiptPage = ({ items, name, date }) => {
             {/* QR 코드와 다운로드 버튼을 포함하는 div */}
             <div style={styles.qrCodeContainer}>
                 <h2 style={styles.text}>영수증 QR 코드</h2>
-                <QRCodeCanvas value={generateQRCodeValue()} />
-                {/* 다운로드 버튼 추가 */}
+                {items.length > 0 ? (
+                    <QRCodeCanvas value={generateQRCodeValue()} />
+                ) : (
+                    <p>QR 코드 생성 불가</p>
+                )}
                 <button onClick={handleDownload} style={styles.downloadButton}>
                     영수증 다운로드
                 </button>
