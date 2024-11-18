@@ -39,10 +39,9 @@ const ReceiptPage = () => {
         });
     };
 
-    // QR 코드에 포함할 URL 생성
     const generateQRCodeValue = () => {
         const itemsData = JSON.stringify(items);
-        const baseUrl = "https://elisaohh.github.io/"; // 영수증 페이지 URL
+        const baseUrl = "https://elisaohh.github.io/"; // 기본 리액트 앱 URL
         return `${baseUrl}?items=${encodeURIComponent(itemsData)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}`;
     };
 
@@ -72,7 +71,6 @@ const ReceiptPage = () => {
                 </div>
             </div>
 
-            {/* QR 코드와 다운로드 버튼을 포함하는 div */}
             <div style={styles.qrCodeContainer}>
                 <h2 style={styles.text}>영수증 QR 코드</h2>
                 {items.length > 0 ? (
