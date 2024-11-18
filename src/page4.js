@@ -22,6 +22,7 @@ function Page4({ setReceiptDate, goToPage }) {
             ? `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours() % 12 || 12}:${now.getMinutes().toString().padStart(2, '0')} ${now.getHours() >= 12 ? 'PM' : 'AM'}`
             : `${date.year}-${date.month.padStart(2, '0')}-${date.day.padStart(2, '0')} ${date.hour}:${date.minute.padStart(2, '0')} ${date.amPm}`;
 
+        console.log("Date submitted:", formattedDate); // 디버깅용 로그
         setReceiptDate(formattedDate); // 입력한 날짜와 시간을 상태로 설정
         goToPage('page5'); // 영수증 페이지로 이동
     };
@@ -29,7 +30,6 @@ function Page4({ setReceiptDate, goToPage }) {
     return (
         <div className="container">
             <h1>좋아하는 사진(추억)의 날짜와 시간을 적어주세요!</h1>
-
             <div className="date-time-container">
                 <select name="year" onChange={handleChange} value={date.year}>
                     <option value="">년도</option>

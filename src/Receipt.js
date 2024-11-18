@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import QRCodeGenerator from './QRCodeGenerator'; 
 
-const ReceiptPage = ({ items, name, date }) => {  // props로 받아옴
+const ReceiptPage = ({ items, name, date }) => { // props로 받아옴
     const receiptRef = useRef();
 
     const handleDownload = () => {
@@ -16,7 +16,8 @@ const ReceiptPage = ({ items, name, date }) => {  // props로 받아옴
             });
     };
 
-    let total = items.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
+    // 총합 계산
+    const total = items.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
 
     return (
         <div style={styles.receiptContainer} ref={receiptRef}>
@@ -52,6 +53,7 @@ const ReceiptPage = ({ items, name, date }) => {  // props로 받아옴
     );
 };
 
+// 스타일 설정
 const styles = {
     receiptContainer: {
         border: '1px solid #333',
