@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url('/Users/alloit/wallpaper.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 96px;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.triangle-button {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent; /* 위쪽 경계선은 투명 */
+    border-bottom: 30px solid transparent; /* 아래쪽 경계선은 투명 */
+    border-left: 50px solid #007bff; /* 왼쪽 경계선 색상 */
+    cursor: pointer; /* 마우스 포인터를 클릭 가능으로 변경 */
+    margin: 20px; /* 여백 추가 */
+}
+
+.small-text {
+    font-size: 14px; /* 작은 글씨 크기 */
+    color: #555; /* 색상 조정 */
+    margin: 5px 0; /* 여백 조정 */
+}
+
+.input-container {
+    margin: 20px 0; /* 입력 필드 여백 */
+}
+
+.input-row {
+    display: flex; /* 수평 정렬을 위해 flex 사용 */
+    margin-bottom: 10px; /* 줄 간격 조정 */
+}
+
+.left-input {
+    flex: 2; /* 왼쪽 칸이 두 배 크기 */
+    padding: 10px; /* 여백 추가 */
+    margin-right: 10px; /* 오른쪽 여백 추가 */
+}
+
+.right-input {
+    flex: 1; /* 오른쪽 칸 */
+    padding: 10px; /* 여백 추가 */
+}
+
+.triangle-button {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent; /* 위쪽 경계선은 투명 */
+    border-bottom: 30px solid transparent; /* 아래쪽 경계선은 투명 */
+    border-left: 50px solid #007bff; /* 왼쪽 경계선 색상 */
+    cursor: pointer; /* 마우스 포인터를 클릭 가능으로 변경 */
+    margin: 20px; /* 여백 추가 */
+}
+
+.date-time-container {
+    display: flex; /* 수평 정렬을 위해 flex 사용 */
+    justify-content: space-between; /* 요소 사이의 공간을 균등 분배 */
+    margin: 20px 0; /* 여백 조정 */
+}
+
+.date-input, .time-input, .am-pm-input {
+    padding: 10px; /* 여백 추가 */
+    margin-right: 10px; /* 오른쪽 여백 추가 */
+    flex: 1; /* 모든 선택 박스의 크기를 동일하게 설정 */
+}
+
+.am-pm-input {
+    flex: 0.5; /* AM/PM 선택 칸은 조금 작게 설정 */
+}
+
+.triangle-button {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent; /* 위쪽 경계선은 투명 */
+    border-bottom: 30px solid transparent; /* 아래쪽 경계선은 투명 */
+    border-left: 50px solid #007bff; /* 왼쪽 경계선 색상 */
+    cursor: pointer; /* 마우스 포인터를 클릭 가능으로 변경 */
+}
