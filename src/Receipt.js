@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'; // useState와 useEffect 추가
 import html2canvas from 'html2canvas';
-import { QRCodeCanvas } from 'qrcode.react';
+import QRCodeGenerator from './QRCodeGenerator'; // QRCodeGenerator 임포트
 
 const ReceiptPage = () => {
     const receiptRef = useRef();
@@ -39,12 +39,6 @@ const ReceiptPage = () => {
         });
     };
 
-    const generateQRCodeValue = () => {
-        const itemsData = JSON.stringify(items);
-        const baseUrl = "https://elisaohh.github.io/"; // 기본 리액트 앱 URL
-        return `${baseUrl}?items=${encodeURIComponent(itemsData)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}`;
-    };
-
     let total = items.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
 
     return (
@@ -72,12 +66,7 @@ const ReceiptPage = () => {
             </div>
 
             <div style={styles.qrCodeContainer}>
-                <h2 style={styles.text}>영수증 QR 코드</h2>
-                {items.length > 0 ? (
-                    <QRCodeCanvas value={generateQRCodeValue()} />
-                ) : (
-                    <p>QR 코드 생성 불가</p>
-                )}
+                <QRCodeGenerator items={items} name={name} date={date} /> {/* QR 코드 생성 */}
                 <button onClick={handleDownload} style={styles.downloadButton}>
                     영수증 다운로드
                 </button>
