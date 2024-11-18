@@ -4,7 +4,7 @@ import Page2 from './page2';
 import Page3 from './page3';
 import Page4 from './page4';
 import Page5 from './page5';
-import ReceiptPage from './Receipt';
+import ReceiptPage from './Receipt'; // ReceiptPage를 import
 import QRCodeGenerator from './QRCodeGenerator';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
             case 'page5':
                 return <Page5 goToPage={setCurrentPage} setReceiptName={setReceiptName} />;
             case 'receipt':
-                return <ReceiptPage items={receiptItems} date={receiptDate} name={receiptName} />;
+                return <ReceiptPage items={receiptItems} name={receiptName} date={receiptDate} />;
             default:
                 return <QRCodeGenerator goToPage={setCurrentPage} />;
         }

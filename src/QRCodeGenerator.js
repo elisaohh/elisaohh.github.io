@@ -1,10 +1,10 @@
 import React from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 
-const QRCodeGenerator = ({ items, date, name }) => {
+const QRCodeGenerator = ({ items, name, date }) => {
     const generateQRCodeValue = () => {
-        const itemsData = JSON.stringify(items); // items를 JSON 문자열로 변환
-        const baseUrl = 'https://elisaohh.github.io/'; // 기본 리액트 앱 URL
+        const itemsData = JSON.stringify(items);
+        const baseUrl = 'https://elisaohh.github.io/';
         const qrCodeUrl = `${baseUrl}?name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}&items=${encodeURIComponent(itemsData)}`;
         console.log("QR Code URL:", qrCodeUrl); // QR 코드 URL 출력
         return qrCodeUrl;
