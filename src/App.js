@@ -24,7 +24,7 @@ function App() {
             case 'page4':
                 return <Page4 goToPage={setCurrentPage} setReceiptDate={setReceiptDate} />;
             case 'page5':
-                return <Page5 goToPage={setCurrentPage} setReceiptName={setReceiptName} setReceiptItems={setReceiptItems} />;
+                return <Page5 goToPage={setCurrentPage} setReceiptName={setReceiptName} />;
             case 'receipt':
                 return <ReceiptPage items={receiptItems} date={receiptDate} name={receiptName} />;
             default:

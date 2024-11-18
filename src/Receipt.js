@@ -1,33 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react'; // useState와 useEffect 추가
+import React, { useRef } from 'react'; 
 import html2canvas from 'html2canvas';
-import QRCodeGenerator from './QRCodeGenerator'; // QRCodeGenerator 임포트
+import QRCodeGenerator from './QRCodeGenerator'; 
 
-const ReceiptPage = () => {
+const ReceiptPage = ({ items, name, date }) => {  // props로 받아옴
     const receiptRef = useRef();
-    const [items, setItems] = useState([]);
-    const [name, setName] = useState('');
-    const [date, setDate] = useState('');
-
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const itemsData = params.get('items');
-        const nameParam = params.get('name');
-        const dateParam = params.get('date');
-
-        if (itemsData) {
-            try {
-                setItems(JSON.parse(decodeURIComponent(itemsData)));
-            } catch (error) {
-                console.error("Error parsing items data:", error);
-            }
-        }
-        if (nameParam) {
-            setName(decodeURIComponent(nameParam));
-        }
-        if (dateParam) {
-            setDate(decodeURIComponent(dateParam));
-        }
-    }, []);
 
     const handleDownload = () => {
         html2canvas(receiptRef.current, { useCORS: true, backgroundColor: null })
@@ -67,7 +43,7 @@ const ReceiptPage = () => {
             </div>
 
             <div style={styles.qrCodeContainer}>
-                <QRCodeGenerator items={items} name={name} date={date} /> {/* QR 코드 생성 */}
+                <QRCodeGenerator items={items} name={name} date={date} />
                 <button onClick={handleDownload} style={styles.downloadButton}>
                     영수증 다운로드
                 </button>
