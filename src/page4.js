@@ -16,10 +16,7 @@ function Page4({ setReceiptDate, goToPage }) {
     };
 
     const handleSubmit = () => {
-        // 현재 날짜와 시간 가져오기
         const now = new Date();
-        
-        // 모든 필드가 공백인 경우 현재 날짜와 시간으로 설정
         const formattedDate = (date.year === '' && date.month === '' && date.day === '' &&
                                date.hour === '' && date.minute === '' && date.amPm === '') 
             ? `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours() % 12 || 12}:${now.getMinutes().toString().padStart(2, '0')} ${now.getHours() >= 12 ? 'PM' : 'AM'}`

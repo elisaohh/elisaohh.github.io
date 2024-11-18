@@ -6,7 +6,6 @@ function Page5({ goToPage, setReceiptName }) {
     const [count, setCount] = useState(1000); // 기본값 1000부터 시작
 
     const handleSubmit = () => {
-        // 이름이 비어있으면 count를 사용하여 이름 설정
         const finalName = name.trim() === '' ? `User${count}` : name;
         setReceiptName(finalName); // 입력한 이름을 상태로 설정
         goToPage('receipt'); // 영수증 페이지로 이동

@@ -30,13 +30,14 @@ const ReceiptPage = () => {
     }, []);
 
     const handleDownload = () => {
-        html2canvas(receiptRef.current, { useCORS: true, backgroundColor: null }).then((canvas) => {
-            const url = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'receipt.png';
-            link.click();
-        });
+        html2canvas(receiptRef.current, { useCORS: true, backgroundColor: null })
+            .then((canvas) => {
+                const url = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'receipt.png';
+                link.click();
+            });
     };
 
     let total = items.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
