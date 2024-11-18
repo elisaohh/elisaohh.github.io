@@ -18,7 +18,7 @@ const ReceiptPage = ({ items, name, date }) => {
     // QR 코드에 포함할 URL 생성 (수정된 부분)
     const generateQRCodeValue = () => {
         const itemsData = JSON.stringify(items);
-        const baseUrl = "https://elisaohh.github.io/receipt"; // 변경된 부분
+        const baseUrl = "https://elisaohh.github.io/"; // 변경된 부분
         return `${baseUrl}?items=${encodeURIComponent(itemsData)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}`;
     };
 
