@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './Home';
-import Page2 from './Page2';
-import Page3 from './Page3';
-import Page4 from './Page4';
-import Page5 from './Page5';
+import Page2 from './page2';
+import Page3 from './page3';
+import Page4 from './page4';
+import Page5 from './page5';
 import ReceiptPage from './receipt';
 
 const App = () => {

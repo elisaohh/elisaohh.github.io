@@ -62,7 +62,7 @@ const ReceiptPage = () => {
                             <span style={styles.text}>{parseFloat(item.price).toLocaleString()}원</span>
                         </div>
                     ))}
-                    <div className="total" style={styles.total}>
+                    <div className="total" style={{ ...styles.total, color: '#000' }}>
                         <strong>합계:</strong> {total.toLocaleString()}원
                     </div>
                     <div className="receipt-info" style={styles.text}>
@@ -103,6 +103,7 @@ const styles = {
     total: {
         fontWeight: 'bold',
         marginTop: '10px',
+        color: '#000', // 합계 색상 검정색
     },
     qrCodeContainer: {
         textAlign: 'center',
@@ -118,7 +119,7 @@ const styles = {
         cursor: 'pointer',
     },
     text: {
-        color: '#000',
+        color: '#000', // 모든 텍스트 색상 검정색
     },
 };
 
