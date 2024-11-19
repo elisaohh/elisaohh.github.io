@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import './Home.css';
 
-function Page5({ goToPage, setReceiptName }) {
-    const [name, setName] = useState('');
+function Page5({ goToPage, setReceiptName, receiptItems, receiptDate }) {
+    const [name, setName] = useState(''); // 이름 상태
     const [count, setCount] = useState(1000); // 기본값 1000부터 시작
 
     const handleSubmit = () => {
-        const finalName = name.trim() === '' ? `User${count}` : name;
-        console.log("Name submitted:", finalName); // 디버깅용 로그
-        setReceiptName(finalName); // 입력한 이름을 상태로 설정
-        goToPage('receipt'); // 영수증 페이지로 이동
+        const finalName = name.trim() === '' ? `User${count}` : name; // 이름이 비어있다면 'User{count}'로 설정
+
+        const itemsData = encodeURIComponent(JSON.stringify(receiptItems));
+        const dateData = encodeURIComponent(receiptDate);
+        const nameData = encodeURIComponent(finalName);
+
+        // 영수증 페이지로 이동
+        goToPage(`receipt?items=${itemsData}&name=${nameData}&date=${dateData}`);
 
         // count 증가
         if (name.trim() === '') {
-            setCount(prevCount => prevCount + 1);
+            setCount(prevCount => prevCount + 1); // 이름이 비어있을 때 count 증가
         }
     };
 

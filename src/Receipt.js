@@ -1,16 +1,14 @@
-import React, { useRef, useEffect, useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
-import QRCodeGenerator from './QRCodeGenerator'; 
+import QRCodeGenerator from './QRCodeGenerator';
 
 const ReceiptPage = () => {
-    const receiptRef = useRef();
     const location = useLocation();
     const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
 
-    // URL 파라미터에서 데이터 가져오기
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const itemsData = params.get('items');
@@ -20,7 +18,7 @@ const ReceiptPage = () => {
         if (itemsData) {
             try {
                 const decodedItems = decodeURIComponent(itemsData);
-                setItems(JSON.parse(decodedItems)); // JSON으로 변환
+                setItems(JSON.parse(decodedItems)); // JSON으로 변환하여 상태 설정
             } catch (error) {
                 console.error("Error parsing items data:", error);
             }
@@ -35,51 +33,44 @@ const ReceiptPage = () => {
         }
     }, [location.search]);
 
-    // 영수증 다운로드 기능
+    // 총합 계산
+    const total = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+
     const handleDownload = () => {
-        html2canvas(receiptRef.current, { useCORS: true, backgroundColor: null })
-            .then((canvas) => {
-                const url = canvas.toDataURL('image/png');
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = 'receipt.png';
-                link.click();
-            });
+        html2canvas(document.querySelector('.receipt-container')).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'receipt.png';
+            link.click();
+        });
     };
 
-    // 총합 계산
-    const total = items.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
-
     return (
-        <div style={styles.receiptContainer} ref={receiptRef}>
+        <div className="receipt-container" style={styles.receiptContainer}>
             <h1 style={styles.title}>나만의 영수증</h1>
-            <div>
-                {items.length > 0 ? (
-                    items.map((item, index) => (
-                        <div key={index} style={styles.receiptItem}>
+            {items.length > 0 ? (
+                <div>
+                    {items.map((item, index) => (
+                        <div key={index} className="receipt-item" style={styles.receiptItem}>
                             <span style={styles.text}>{item.name}</span>
                             <span style={styles.text}>{parseFloat(item.price).toLocaleString()}원</span>
                         </div>
-                    ))
-                ) : (
-                    <p>영수증 정보가 없습니다.</p>
-                )}
-                <div style={styles.total}>
-                    <span style={styles.text}>합계:</span>
-                    <span style={styles.text}>{total.toLocaleString()}원</span>
+                    ))}
+                    <div className="total" style={styles.total}>
+                        <strong>합계:</strong> {total.toLocaleString()}원
+                    </div>
+                    <div className="receipt-info" style={styles.text}>
+                        <strong>이름:</strong> {name}<br />
+                        <strong>날짜:</strong> {date}
+                    </div>
                 </div>
-                <div style={styles.total}>
-                    <span style={styles.text}>이름: {name}</span>
-                    <span style={styles.text}>날짜: {date}</span>
-                </div>
-            </div>
-
-            <div style={styles.qrCodeContainer}>
+            ) : (
+                <p>영수증 정보가 없습니다.</p>
+            )}
+            <div className="qr-code-container" style={styles.qrCodeContainer}>
                 <QRCodeGenerator items={items} name={name} date={date} />
-                <button onClick={handleDownload} style={styles.downloadButton}>
-                    영수증 다운로드
-                </button>
             </div>
+            <button onClick={handleDownload} style={styles.downloadButton}>영수증 다운로드</button>
         </div>
     );
 };

@@ -22,9 +22,8 @@ function Page4({ setReceiptDate, goToPage }) {
             ? `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours() % 12 || 12}:${now.getMinutes().toString().padStart(2, '0')} ${now.getHours() >= 12 ? 'PM' : 'AM'}`
             : `${date.year}-${date.month.padStart(2, '0')}-${date.day.padStart(2, '0')} ${date.hour}:${date.minute.padStart(2, '0')} ${date.amPm}`;
 
-        console.log("Date submitted:", formattedDate); // 디버깅용 로그
         setReceiptDate(formattedDate); // 입력한 날짜와 시간을 상태로 설정
-        goToPage('page5'); // 영수증 페이지로 이동
+        goToPage('page5'); // Page5로 이동
     };
 
     return (
@@ -73,13 +72,7 @@ function Page4({ setReceiptDate, goToPage }) {
                 </select>
             </div>
 
-            <button 
-                className="triangle-button" 
-                onClick={handleSubmit} // 입력 완료 후 다음 페이지로 이동
-                style={{ position: 'absolute', bottom: '20px', right: '20px' }} // 오른쪽 하단에 위치 조정
-            >
-                다음
-            </button>
+            <button onClick={handleSubmit}>다음</button>
         </div>
     );
 }

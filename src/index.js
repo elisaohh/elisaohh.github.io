@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App'; // App 컴포넌트를 가져옵니다.
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom/client'; // React 18의 새로운 API 사용
+import './index.css'; // CSS 파일 import
+import AppWrapper from './App'; // AppWrapper import
+import reportWebVitals from './reportWebVitals'; // 성능 측정을 위한 설정
 
-// ReactDOM을 통해 앱 렌더링
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')); // 'root' 요소 선택
 root.render(
   <React.StrictMode>
-    <App /> {/* App 컴포넌트를 렌더링하여 페이지 간 이동을 가능하게 합니다. */}
+    <AppWrapper /> {/* AppWrapper를 렌더링하여 페이지 간 이동을 가능하게 합니다. */}
   </React.StrictMode>
 );
 

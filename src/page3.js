@@ -15,8 +15,7 @@ function Page3({ goToPage, setReceiptItems }) {
 
     const handleSubmit = () => {
         setReceiptItems(items); // 입력된 상품 정보를 상태로 설정
-        console.log("Items submitted:", items); // 디버깅용 로그
-        goToPage('page4'); // Page4로 이동
+        goToPage('page4'); // 페이지 4로 이동하여 날짜 입력 받기
     };
 
     return (
