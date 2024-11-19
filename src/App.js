@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home'; // 홈 컴포넌트
 import Page2 from './Page2'; // 페이지 2 컴포넌트
 import Page3 from './Page3'; // 페이지 3 컴포넌트
@@ -15,29 +15,15 @@ const App = () => {
 
     return (
         <Router>
-            <Switch>
-                <Route path="/" exact>
-                    <Home />
-                </Route>
-                <Route path="/page2">
-                    <Page2 />
-                </Route>
-                <Route path="/page3">
-                    <Page3 setReceiptItems={setReceiptItems} />
-                </Route>
-                <Route path="/page4">
-                    <Page4 setReceiptDate={setReceiptDate} />
-                </Route>
-                <Route path="/page5">
-                    <Page5 setReceiptName={setReceiptName} />
-                </Route>
-                <Route path="/receipt">
-                    <ReceiptPage items={receiptItems} name={receiptName} date={receiptDate} />
-                </Route>
-                <Route path="/qrcode">
-                    <QRCodeGenerator />
-                </Route>
-            </Switch>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/page2" element={<Page2 />} />
+                <Route path="/page3" element={<Page3 setReceiptItems={setReceiptItems} />} />
+                <Route path="/page4" element={<Page4 setReceiptDate={setReceiptDate} />} />
+                <Route path="/page5" element={<Page5 setReceiptName={setReceiptName} />} />
+                <Route path="/receipt" element={<ReceiptPage items={receiptItems} name={receiptName} date={receiptDate} />} />
+                <Route path="/qrcode" element={<QRCodeGenerator />} />
+            </Routes>
         </Router>
     );
 };
