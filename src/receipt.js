@@ -39,6 +39,9 @@ const ReceiptPage = () => {
     // 총합 계산
     const total = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
 
+    console.log("Items:", items); // 디버깅: 아이템 확인
+    console.log("Total:", total); // 디버깅: 총합 확인
+
     const handleDownload = () => {
         html2canvas(document.querySelector('.receipt-container')).then(canvas => {
             const link = document.createElement('a');
