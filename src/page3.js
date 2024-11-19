@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 function Page3({ goToPage, setReceiptItems }) {
     const [items, setItems] = useState([{ name: '', price: '' }]);
+    const [name, setName] = useState(''); // 이름 상태 추가
+    const [date, setDate] = useState(''); // 날짜 상태 추가
 
     const handleChange = (index, event) => {
         const newItems = [...items];
@@ -15,7 +17,8 @@ function Page3({ goToPage, setReceiptItems }) {
 
     const handleSubmit = () => {
         setReceiptItems(items); // 입력된 상품 정보를 상태로 설정
-        goToPage('page4'); // 페이지 4로 이동하여 날짜 입력 받기
+        const itemsData = encodeURIComponent(JSON.stringify(items)); // JSON 문자열로 변환 후 URL 인코딩
+        goToPage(`receipt?items=${itemsData}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}`); // 페이지 4로 이동
     };
 
     return (
@@ -41,6 +44,17 @@ function Page3({ goToPage, setReceiptItems }) {
                     </div>
                 ))}
             </div>
+            <input
+                type="text"
+                placeholder="이름"
+                value={name}
+                onChange={(e) => setName(e.target.value)} // 이름 입력 처리
+            />
+            <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)} // 날짜 입력 처리
+            />
             <button onClick={addItem}>상품 추가</button>
             <button onClick={handleSubmit}>다음</button>
         </div>

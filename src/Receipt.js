@@ -18,7 +18,8 @@ const ReceiptPage = () => {
         if (itemsData) {
             try {
                 const decodedItems = decodeURIComponent(itemsData);
-                setItems(JSON.parse(decodedItems)); // JSON으로 변환하여 상태 설정
+                const parsedItems = JSON.parse(decodedItems);
+                setItems(parsedItems); // JSON으로 변환하여 상태 설정
             } catch (error) {
                 console.error("Error parsing items data:", error);
             }
