@@ -1,16 +1,18 @@
 import React, { useRef, useEffect, useState } from 'react'; 
+import { useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import QRCodeGenerator from './QRCodeGenerator'; 
 
 const ReceiptPage = () => {
     const receiptRef = useRef();
+    const location = useLocation();
     const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
 
     // URL 파라미터에서 데이터 가져오기
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
+        const params = new URLSearchParams(location.search);
         const itemsData = params.get('items');
         const nameParam = params.get('name');
         const dateParam = params.get('date');
@@ -31,7 +33,7 @@ const ReceiptPage = () => {
         if (dateParam) {
             setDate(decodeURIComponent(dateParam)); // 날짜 설정
         }
-    }, []);
+    }, [location.search]);
 
     // 영수증 다운로드 기능
     const handleDownload = () => {

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home'; // 홈 컴포넌트
-import Page2 from './page2'; // 다른 페이지들
-import Page3 from './page3';
-import Page4 from './page4';
-import Page5 from './page5';
+import Page2 from './Page2'; // 페이지 2 컴포넌트
+import Page3 from './Page3'; // 페이지 3 컴포넌트
+import Page4 from './Page4'; // 페이지 4 컴포넌트
+import Page5 from './Page5'; // 페이지 5 컴포넌트
 import ReceiptPage from './Receipt'; // 영수증 페이지 컴포넌트
 import QRCodeGenerator from './QRCodeGenerator'; // QR 코드 생성기
 
 const App = () => {
-    const [receiptItems, setReceiptItems] = useState([]);
-    const [receiptDate, setReceiptDate] = useState('');
-    const [receiptName, setReceiptName] = useState('');
+    const [receiptItems, setReceiptItems] = useState([]); // 영수증 아이템 상태
+    const [receiptDate, setReceiptDate] = useState(''); // 영수증 날짜 상태
+    const [receiptName, setReceiptName] = useState(''); // 영수증 이름 상태
 
     return (
         <Router>
