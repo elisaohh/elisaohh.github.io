@@ -1,10 +1,39 @@
-import React, { useRef } from 'react'; 
+import React, { useRef, useEffect, useState } from 'react'; 
 import html2canvas from 'html2canvas';
 import QRCodeGenerator from './QRCodeGenerator'; 
 
-const ReceiptPage = ({ items, name, date }) => { // props로 받아옴
+const ReceiptPage = () => {
     const receiptRef = useRef();
+    const [items, setItems] = useState([]);
+    const [name, setName] = useState('');
+    const [date, setDate] = useState('');
 
+    // URL 파라미터에서 데이터 가져오기
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const itemsData = params.get('items');
+        const nameParam = params.get('name');
+        const dateParam = params.get('date');
+
+        if (itemsData) {
+            try {
+                const decodedItems = decodeURIComponent(itemsData);
+                setItems(JSON.parse(decodedItems)); // JSON으로 변환
+            } catch (error) {
+                console.error("Error parsing items data:", error);
+            }
+        }
+
+        if (nameParam) {
+            setName(decodeURIComponent(nameParam)); // 이름 설정
+        }
+
+        if (dateParam) {
+            setDate(decodeURIComponent(dateParam)); // 날짜 설정
+        }
+    }, []);
+
+    // 영수증 다운로드 기능
     const handleDownload = () => {
         html2canvas(receiptRef.current, { useCORS: true, backgroundColor: null })
             .then((canvas) => {

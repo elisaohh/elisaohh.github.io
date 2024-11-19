@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Home from './Home';
-import Page2 from './page2';
+import Home from './Home'; // 홈 컴포넌트
+import Page2 from './page2'; // 다른 페이지들
 import Page3 from './page3';
 import Page4 from './page4';
 import Page5 from './page5';
-import ReceiptPage from './Receipt'; // ReceiptPage를 import
-import QRCodeGenerator from './QRCodeGenerator';
+import ReceiptPage from './Receipt'; // 영수증 페이지 컴포넌트
+import QRCodeGenerator from './QRCodeGenerator'; // QR 코드 생성기
 
-function App() {
-    const [currentPage, setCurrentPage] = useState('home');
+const App = () => {
+    const [currentPage, setCurrentPage] = useState('home'); // currentPage 상태 추가
     const [receiptItems, setReceiptItems] = useState([]);
     const [receiptDate, setReceiptDate] = useState('');
     const [receiptName, setReceiptName] = useState('');
@@ -27,8 +27,10 @@ function App() {
                 return <Page5 goToPage={setCurrentPage} setReceiptName={setReceiptName} />;
             case 'receipt':
                 return <ReceiptPage items={receiptItems} name={receiptName} date={receiptDate} />;
-            default:
+            case 'qrcode':
                 return <QRCodeGenerator goToPage={setCurrentPage} />;
+            default:
+                return <Home goToPage={setCurrentPage} />; // 기본 페이지
         }
     };
 
@@ -37,6 +39,6 @@ function App() {
             {renderPage()}
         </div>
     );
-}
+};
 
 export default App;
