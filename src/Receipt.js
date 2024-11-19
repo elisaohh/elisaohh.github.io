@@ -22,6 +22,8 @@ const ReceiptPage = () => {
             } catch (error) {
                 console.error("Error parsing items data:", error);
             }
+        } else {
+            console.error("itemsData is not provided in the URL");
         }
 
         if (nameParam) {
