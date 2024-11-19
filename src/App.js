@@ -38,7 +38,7 @@ const App = () => {
 };
 
 const AppWrapper = () => (
-    <Router>
+    <Router basename="/receipt"> {/* basename 설정 추가 */}
         <App />
     </Router>
 );
