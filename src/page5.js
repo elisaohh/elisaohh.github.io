@@ -5,7 +5,7 @@ function Page5({ goToPage, setReceiptName, receiptItems, receiptDate }) {
     const [count, setCount] = useState(1000);
 
     const handleSubmit = () => {
-        const finalName = name.trim() === '' ? `User${count}` : name;
+        const finalName = name.trim() === '' ? `User ${count}` : name;
 
         const itemsData = encodeURIComponent(JSON.stringify(receiptItems));
         const dateData = encodeURIComponent(receiptDate);
@@ -21,7 +21,9 @@ function Page5({ goToPage, setReceiptName, receiptItems, receiptDate }) {
 
     return (
         <div className="container">
-            <h1>본인의 이름 또는 닉네임을 적어주세요!</h1>
+            <h1 className='p5-text'>본인의 이름 또는</h1>
+            <h1 className='p5-text'>닉네임을 적어주세요!</h1>
+            <p className="small-text">원하시지 않으시면 그냥 넘어가도 괜찮습니다 :)</p>
             <input
                 type="text"
                 className="name-input"
@@ -29,7 +31,8 @@ function Page5({ goToPage, setReceiptName, receiptItems, receiptDate }) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
-            <button onClick={handleSubmit}>완료</button>
+            {/* 삼각형 버튼 */}
+            <div className="triangle-button-p3" onClick={handleSubmit} />
         </div>
     );
 }

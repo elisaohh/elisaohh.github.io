@@ -17,7 +17,6 @@ const QRCodeGenerator = ({ items, name, date }) => {
 
     return (
         <div>
-            <h2>영수증 QR 코드</h2>
             <QRCodeCanvas value={qrCodeUrl} />
         </div>
     );

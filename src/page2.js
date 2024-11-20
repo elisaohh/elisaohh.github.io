@@ -1,12 +1,12 @@
 import React from 'react';
-import './Home.css';
+import './Page.css';
 
 function Page2({ goToPage }) {
     return (
         <div className="container">
-            <h1>자신이 가장 좋아하는 사진 또는 추억을 떠올려봅니다</h1>
-            <br />
-            <button onClick={() => goToPage('page3')} className="triangle-button">▲</button> {/* 수정 */}
+            <div className='p2-text'>자신이 가장 좋아하는 사진</div>
+            <div className='p2-text'>또는 추억을 떠올려봅니다</div>
+            <div className="triangle-button" onClick={() => goToPage('page3')} />
         </div>
     );
 }

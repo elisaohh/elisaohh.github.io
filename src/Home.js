@@ -1,10 +1,11 @@
 import React from 'react';
-import './Home.css';
+import './Page.css';
 
 function Home({ goToPage }) {
     return (
         <div className="container">
-            <h1>나만의 영수증 만들기</h1>
+            <h1>추억의 조각,</h1>
+            <div className='title'>영수증으로 남기는 나의 이야기</div>
             <div className="triangle-button" onClick={() => goToPage('page2')} />
         </div>
     );
