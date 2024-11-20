@@ -19,35 +19,34 @@ const ReceiptPage = () => {
             try {
                 const decodedItems = decodeURIComponent(itemsData);
                 const parsedItems = JSON.parse(decodedItems);
-                setItems(parsedItems); // JSON으로 변환하여 상태 설정
+                setItems(parsedItems);
             } catch (error) {
                 console.error("Error parsing items data:", error);
             }
-        } else {
-            console.error("itemsData is not provided in the URL");
         }
 
         if (nameParam) {
-            setName(decodeURIComponent(nameParam)); // 이름 설정
+            setName(decodeURIComponent(nameParam));
         }
 
         if (dateParam) {
-            setDate(decodeURIComponent(dateParam)); // 날짜 설정
+            setDate(decodeURIComponent(dateParam));
         }
     }, [location.search]);
 
-    // 총합 계산
     const total = items.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
 
-    console.log("Items:", items); // 디버깅: 아이템 확인
-    console.log("Total:", total); // 디버깅: 총합 확인
-
     const handleDownload = () => {
-        html2canvas(document.querySelector('.receipt-container')).then(canvas => {
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
-            link.download = 'receipt.png';
-            link.click();
+        const receiptContainer = document.querySelector('.receipt-container');
+        html2canvas(receiptContainer).then(canvas => {
+            canvas.toBlob(blob => {
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = `receipt_${name}_${date}.png`;
+                link.click();
+            });
+        }).catch(error => {
+            console.error('Error generating receipt image:', error);
         });
     };
 
@@ -103,7 +102,7 @@ const styles = {
     total: {
         fontWeight: 'bold',
         marginTop: '10px',
-        color: '#000', // 합계 색상 검정색
+        color: '#000',
     },
     qrCodeContainer: {
         textAlign: 'center',
@@ -119,7 +118,7 @@ const styles = {
         cursor: 'pointer',
     },
     text: {
-        color: '#000', // 모든 텍스트 색상 검정색
+        color: '#000',
     },
 };
 
