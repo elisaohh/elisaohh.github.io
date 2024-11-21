@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import html2canvas from 'html2canvas';
 import QRCodeGenerator from './QRCodeGenerator';
-import inartLogo from './image/인아트_로고-누끼.png'; 
+import inartLogo from './image/inartLogo.png'; 
 import wallpaperReceipt from './image/wallpaper-receipt.jpg'; // 배경 이미지 임포트
 import './receipt.css'; // CSS 파일 가져오기
 
