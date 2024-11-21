@@ -2,7 +2,7 @@ import React from 'react';
 
 const QRCodeGenerator = () => {
     // 새로운 QR 코드 이미지 URL
-    const qrCodeImageUrl = 'https://cdn3.me-qr.com/qr/140021762.png?v=1732213569';
+    const qrCodeImageUrl = 'https://cdn3.me-qr.com/qr/140023361.png?v=1732213936';
     const qrCodeLink = 'https://me-qr.com'; // QR 코드 클릭 시 이동할 링크
 
     return (
