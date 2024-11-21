@@ -74,7 +74,11 @@ const ReceiptPage = () => {
 
     const handleHomeClick = () => {
         // 홈 버튼 클릭 시 홈 페이지로 이동
+        setItems([]); // 상태 초기화
+        setName('');
+        setDate('')
         navigate('/'); // 홈 페이지로 이동
+        window.location.reload(); // 페이지 새로 고침
     };
 
     return (
