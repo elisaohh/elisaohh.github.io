@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import './Page.css'; // 스타일 파일을 임포트합니다.
 
 function Page3({ goToPage, setReceiptItems }) {
-    const [items, setItems] = useState([{ item: '', price: '' }]); // 상태 초기화
+    const [items, setItems] = useState([{ item: '', price: '' }]);
 
-    // 미리 정의된 placeholder 배열
     const placeholders = [
         "우리 강아지 호두와의 산책",
         "Like a Fool - Sam Kim",
@@ -16,9 +16,8 @@ function Page3({ goToPage, setReceiptItems }) {
         const newItems = [...items];
         const { name, value } = event.target;
 
-        // 숫자 입력 처리
         if (name === 'price') {
-            newItems[index][name] = value ? parseFloat(value) : ''; // 빈 문자열로 초기화
+            newItems[index][name] = value ? parseFloat(value) : '';
         } else {
             newItems[index][name] = value;
         }
@@ -28,13 +27,13 @@ function Page3({ goToPage, setReceiptItems }) {
 
     const addItem = () => {
         const newIndex = items.length;
-        const newPlaceholder = placeholders[newIndex % placeholders.length]; // 순환하여 placeholder 설정
-        setItems([...items, { item: '', price: '', placeholder: newPlaceholder }]); // 목록과 가격 입력칸 추가
+        const newPlaceholder = placeholders[newIndex % placeholders.length];
+        setItems([...items, { item: '', price: '', placeholder: newPlaceholder }]);
     };
 
     const handleSubmit = () => {
-        setReceiptItems(items); // 입력된 상품 정보를 상태로 설정
-        goToPage('page4'); // 페이지 4로 이동하여 날짜 입력 받기
+        setReceiptItems(items);
+        goToPage('page4');
     };
 
     return (
@@ -43,63 +42,42 @@ function Page3({ goToPage, setReceiptItems }) {
             <div className='p3-text'>추억을 소중하게 만드나요?</div>
             <p className="small-text">(사랑하는 사람, 선선하게 부는 바람, 좋아하는 노래 제목 등 다양하게 적어주세요!)</p>
             <p className="small-text">(각 목록이 소중한 추억에서 차지하는 정도를 함께 적어주세요!)</p>
+            
+            <div className="input-labels">
+                <label className="input-label">목록</label>
+                <label className="input-label">정도 (1~100)</label>
+            </div>
             <div className="input-container">
                 {items.map((item, index) => (
-                    <div className="input-row" key={index} style={{ marginBottom: '5px' }}>
-                        {index === 0 ? (
-                            <>
-                                <div className="input-group">
-                                    <label className="input-label">목록</label>
-                                    <input
-                                        type="text"
-                                        name="item"
-                                        placeholder={item.placeholder || "우리 강아지 호두와의 산책"} 
-                                        value={item.item}
-                                        onChange={(e) => handleChange(index, e)}
-                                        className="left-input"
-                                        style={{ marginRight: '20px' }}
-                                    />
-                                </div>
-                                <div className="input-group">
-                                    <label className="input-label">가격 (10~999)</label>
-                                    <input
-                                        type="number"
-                                        name="price"
-                                        placeholder="999"
-                                        value={item.price}
-                                        onChange={(e) => handleChange(index, e)}
-                                        className="right-input"
-                                    />
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <input
-                                    type="text"
-                                    name="item"
-                                    placeholder={item.placeholder || "Like a Fool - Sam Kim"} 
-                                    value={item.item}
-                                    onChange={(e) => handleChange(index, e)}
-                                    className="left-input"
-                                    style={{ marginRight: '40px' }}
-                                />
-                                <input
-                                    type="number"
-                                    name="price"
-                                    placeholder="500"
-                                    value={item.price}
-                                    onChange={(e) => handleChange(index, e)}
-                                    className="right-input"
-                                />
-                            </>
-                        )}
+                    <div className="input-row" key={index}>
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                name="item"
+                                placeholder={item.placeholder || "우리 강아지 호두와의 산책"} 
+                                value={item.item}
+                                onChange={(e) => handleChange(index, e)}
+                                className="left-input"
+                            />
+                        </div>
+                        <div className="input-group">
+                            <input
+                                type="number"
+                                name="price"
+                                placeholder="가격"
+                                value={item.price}
+                                onChange={(e) => handleChange(index, e)}
+                                className="right-input"
+                            />
+                        </div>
                     </div>
                 ))}
             </div>
 
+            <p className="scroll-instruction">스크롤을 내리시면 추가된 목록이 보입니다 :)</p>
+            
             <button onClick={addItem}>상품 추가</button>
             
-            {/* 삼각형 버튼 */}
             <div className="triangle-button-p3" onClick={handleSubmit} />
         </div>
     );
