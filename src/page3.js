@@ -64,7 +64,7 @@ function Page3({ goToPage, setReceiptItems }) {
                             <input
                                 type="number"
                                 name="price"
-                                placeholder="가격"
+                                placeholder="100"
                                 value={item.price}
                                 onChange={(e) => handleChange(index, e)}
                                 className="right-input"

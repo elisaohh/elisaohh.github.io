@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import html2canvas from 'html2canvas';
 import QRCodeGenerator from './QRCodeGenerator';
 import inartLogo from './image/인아트_로고-누끼.png'; 
@@ -8,6 +8,7 @@ import './receipt.css'; // CSS 파일 가져오기
 
 const ReceiptPage = () => {
     const location = useLocation();
+    const navigate = useNavigate(); // useNavigate 훅 사용
     const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
@@ -71,10 +72,20 @@ const ReceiptPage = () => {
         });
     };
 
+    const handleQRCodeClick = () => {
+        // QR 코드 클릭 시 다운로드 페이지로 이동
+        navigate('/download'); // navigate를 사용하여 페이지 이동
+    };
+
+    const handleHomeClick = () => {
+        // 홈 버튼 클릭 시 홈 페이지로 이동
+        navigate('/'); // 홈 페이지로 이동
+    };
+
     return (
         <div className="receipt-page">
-            <div className="receipt-container">
-                <img src={inartLogo} alt="Art Logo" className="logo" />
+            <div className="receipt-container" onClick={handleQRCodeClick}>
+                <img src={inartLogo} alt="inartLogo" className="logo" />
                 <h2 className="subtitle">MEMORABLE MOMENTS</h2>
                 <p className="order-info">추억의 한 조각들</p>
                 <p className="order-number">ORDER #{Math.floor(Math.random() * 10000)} FOR {name}</p>
@@ -129,6 +140,7 @@ const ReceiptPage = () => {
             </div>
 
             <button onClick={handleDownload} className="download-button">영수증 다운로드</button>
+            <button onClick={handleHomeClick} className="home-button">홈으로 돌아가기</button> {/* 홈 버튼 추가 */}
         </div>
     );
 };

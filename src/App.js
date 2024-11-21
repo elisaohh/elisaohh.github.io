@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import Home from './Home';
 import Page2 from './page2';
 import Page3 from './page3';
 import Page4 from './page4';
 import Page5 from './page5';
 import ReceiptPage from './receipt';
+import MessagePage from './Message'; // 새 페이지 임포트
 
 const App = () => {
-    const navigate = useNavigate();
-
+    const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 가져오기
     const [receiptItems, setReceiptItems] = useState([]);
     const [receiptDate, setReceiptDate] = useState('');
     const [receiptName, setReceiptName] = useState('');
@@ -33,12 +33,13 @@ const App = () => {
             <Route path="/page4" element={<Page4 goToPage={goToPage} setReceiptDate={setReceiptDate} />} />
             <Route path="/page5" element={<Page5 goToPage={goToPage} setReceiptName={setReceiptName} receiptItems={receiptItems} receiptDate={receiptDate} />} />
             <Route path="/receipt" element={<ReceiptPage />} />
+            <Route path="/message" element={<MessagePage />} /> {/* 메시지 페이지 추가 */}
         </Routes>
     );
 };
 
 const AppWrapper = () => (
-    <Router basename="/"> {/* basename 설정을 빈 문자열로 유지 */}
+    <Router>
         <App />
     </Router>
 );

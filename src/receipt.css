@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    z-index: 2;
+    
 }
 
 .receipt-container {
@@ -32,14 +32,14 @@
     line-height: 1.5;
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: 2;
+    
 }
 
 .logo {
     display: block;
     margin: 0 auto;
     max-width: 50%;
-    z-index: 2;
+    
 }
 
 .subtitle {
@@ -47,14 +47,14 @@
     font-family: 'DepartureMono-Regular';
     font-size: 24px;
     margin: 10px auto 0; /* 위쪽 여백을 10px로 설정 */
-    z-index: 2;
+    
 }
 
 .order-info {
     text-align: center;
     font-size: 16px;
     margin: 10px auto 15px; /* 위쪽 여백을 10px로 설정 */
-    z-index: 2;
+    
 }
 
 .order-number {
@@ -62,7 +62,7 @@
     font-size: 14px;
     margin: 10px auto 0; /* 위쪽 여백을 10px로 설정 */
     padding: 0 7px; /* 위아래는 0, 좌우는 20px로 설정 */
-    z-index: 2;
+    
 }
 
 .date {
@@ -70,14 +70,14 @@
     font-size: 14px;
     margin: 5px auto 5px;
     padding: 0 7px; /* 위아래는 0, 좌우는 20px로 설정 */
-    z-index: 2;
+    
 }
 
 .separator {
     border: none;
     border-top: 1px dashed #333;
     margin: 10px auto 0; /* 위쪽 여백을 10px로 설정 */
-    z-index: 2;
+    
 }
 
 .header-row {
@@ -86,12 +86,12 @@
     text-align: center;
     width: 400px;
     margin: 10px auto 0; /* 위쪽 여백을 10px로 설정 */
-    z-index: 2;
+    
 }
 
 .header-cell {
     padding: 0 20px; /* 위아래는 0, 좌우는 20px로 설정 */
-    z-index: 2;
+    
 }
 
 .receipt-item {
@@ -100,26 +100,26 @@
     text-align: center;
     width: 410px; /* 헤더와 동일한 너비 설정 */
     margin: 20px 0; /* 각 아이템 사이의 여백 */
-    z-index: 2;
+    
 }
 
 .item-index {
     padding: 0 20px; /* 위아래는 0, 좌우는 20px로 설정 */
     flex: 1; /* 동일한 비율로 넓이 조정 */
-    z-index: 2;
+    
 }
 
 .item-name {
     padding: 0 20px; /* 위아래는 0, 좌우는 20px로 설정 */
     flex: 1; /* 동일한 비율로 넓이 조정 */
-    z-index: 2;
+    
 }
 
 .item-price {
     padding: 0 20px; /* 위아래는 0, 좌우는 20px로 설정 */
     flex: 1; /* 동일한 비율로 넓이 조정 */
     text-align: right;
-    z-index: 2;
+    
 }
 
 
@@ -128,18 +128,18 @@
     justify-content: space-between; /* 양쪽 끝에 배치 */
     width: 380px; /* 원하는 너비 설정 (헤더와 일치) */
     margin: 15px auto 15px; /* 위쪽 여백을 10px로 설정 */
-    z-index: 2;
+    
 }
 
 .count-value, .total-value {
     margin-left: auto; /* 왼쪽 요소의 오른쪽으로 밀기 */
-    z-index: 2;
+    
 }
 
 .qr-code-container {
     text-align: center;
     margin-top: 20px;
-    z-index: 2;
+    
 }
 
 .download-button {
@@ -158,11 +158,11 @@
     bottom: 50px; /* 화면 하단 */
     right: 50px; /* 화면 오른쪽 */
     transform: translateY(20px); /* 위로 이동 */
-    z-index: 2;
+    
 }
 
 .download-button:hover {
-    background-color: #b0b0b0; /* 호버 시 배경색 변화 */
+    background-color: #82bcfa; /* 호버 시 배경색 변화 */
 }
 
 .download-button:focus {
@@ -176,5 +176,31 @@
     text-align: left;
     font-size: 12px;
     color: #333;
-    z-index: 2;
+
+}
+
+
+
+.home-button {
+    background-color: #4b4b4b; /* 버튼 배경색 */
+    color: #fff; /* 버튼 글자색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 10px; /* 둥근 모서리 */
+    padding: 10px 20px; /* 버튼 여백 */
+    font-size: 16px; /* 글씨 크기 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+    font-family: "Galmuri11", sans-serif; /* 폰트 설정 */
+    cursor: pointer; /* 마우스 포인터 */
+    transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
+    position: fixed; /* 고정 위치 */
+    top: 20px; /* 화면 상단에서 20px 떨어진 위치 */
+    right: 50px; /* 화면 오른쪽에서 50px 떨어진 위치 */
+}
+
+.home-button:hover {
+    background-color: #82bcfa; /* 호버 시 배경색 변화 */
+}
+
+.home-button:focus {
+    outline: none; /* 포커스 시 테두리 제거 */
 }
