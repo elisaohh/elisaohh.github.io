@@ -17,7 +17,11 @@ const QRCodeGenerator = ({ items, name, date }) => {
 
     return (
         <div>
-            <QRCodeCanvas value={qrCodeUrl} />
+            <QRCodeCanvas 
+                value={qrCodeUrl} 
+                bgColor="transparent" // 배경색을 투명으로 설정
+                fgColor="#000000" // QR 코드 색상 (필요시 수정)
+            />
         </div>
     );
 };

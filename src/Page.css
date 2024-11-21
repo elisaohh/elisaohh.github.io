@@ -10,8 +10,9 @@
 body {
     margin: 0;
     height: 100vh;
-    background-image: url('/Users/alloit/wallpaper.jpg');
+    background-image: url('./image/wallpaper.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;

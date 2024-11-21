@@ -7,27 +7,6 @@
 
 @import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 
-body {
-    margin: 0;
-    height: 100vh;
-    background-image: url('/Users/alloit/wallpaper.jpg');
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center; /* 텍스트 중앙 정렬 */
-}
-
-body::before {
-    content: ''; /* 가상 요소를 생성 */
-    position: absolute; /* 절대 위치 설정 */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3); /* 검은색 반투명 배경 */
-    z-index: 1; /* 텍스트보다 위에 위치하게 설정 */
-}
 
 .page-container {
     position: relative;

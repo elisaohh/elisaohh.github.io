@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import QRCodeGenerator from './QRCodeGenerator';
 import inartLogo from './image/인아트_로고-누끼.png'; 
+import wallpaperReceipt from './image/wallpaper-receipt.jpg'; // 배경 이미지 임포트
 import './receipt.css'; // CSS 파일 가져오기
 
 const ReceiptPage = () => {
@@ -12,6 +13,11 @@ const ReceiptPage = () => {
     const [date, setDate] = useState('');
 
     useEffect(() => {
+        // body 배경 색상 변경
+        document.body.style.backgroundImage = `url(${wallpaperReceipt})`; // 임포트한 이미지 사용
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
+
         const params = new URLSearchParams(location.search);
         const itemsData = params.get('items');
         const nameParam = params.get('name');
@@ -41,6 +47,11 @@ const ReceiptPage = () => {
         if (dateParam) {
             setDate(decodeURIComponent(dateParam));
         }
+
+        // 컴포넌트 언마운트 시 원래의 배경으로 되돌리기
+        return () => {
+            document.body.style.backgroundImage = "url('./image/wallpaper.jpg')"; // 기본 배경으로 되돌리기
+        };
     }, [location.search]);
 
     // 합계 계산 (각 가격에 100 곱하기)
@@ -61,7 +72,7 @@ const ReceiptPage = () => {
     };
 
     return (
-        <div className="page-container">
+        <div className="receipt-page">
             <div className="receipt-container">
                 <img src={inartLogo} alt="Art Logo" className="logo" />
                 <h2 className="subtitle">MEMORABLE MOMENTS</h2>
@@ -71,7 +82,6 @@ const ReceiptPage = () => {
                 
                 <hr className="separator" />
 
-                {/* qty, item, amt 헤더 추가 */}
                 <div className="header-row">
                     <div className="header-cell">Qty</div>
                     <div className="header-cell">Item</div>
@@ -118,7 +128,6 @@ const ReceiptPage = () => {
                 </div>
             </div>
 
-            {/* 다운로드 버튼을 전체 화면 오른쪽 하단으로 이동 */}
             <button onClick={handleDownload} className="download-button">영수증 다운로드</button>
         </div>
     );
