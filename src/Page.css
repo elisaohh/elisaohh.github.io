@@ -12,7 +12,6 @@ body {
     height: 100vh;
     background-image: url('./image/wallpaper.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;

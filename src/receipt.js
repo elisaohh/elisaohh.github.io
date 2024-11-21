@@ -72,11 +72,6 @@ const ReceiptPage = () => {
         });
     };
 
-    const handleQRCodeClick = () => {
-        // QR 코드 클릭 시 다운로드 페이지로 이동
-        navigate('/download'); // navigate를 사용하여 페이지 이동
-    };
-
     const handleHomeClick = () => {
         // 홈 버튼 클릭 시 홈 페이지로 이동
         navigate('/'); // 홈 페이지로 이동
@@ -84,7 +79,7 @@ const ReceiptPage = () => {
 
     return (
         <div className="receipt-page">
-            <div className="receipt-container" onClick={handleQRCodeClick}>
+            <div className="receipt-container">
                 <img src={inartLogo} alt="inartLogo" className="logo" />
                 <h2 className="subtitle">MEMORABLE MOMENTS</h2>
                 <p className="order-info">추억의 한 조각들</p>
