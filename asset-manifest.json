@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.bfe3f7b7.css",
-    "main.js": "/static/js/main.8a833e8e.js",
+    "main.css": "/static/css/main.6dc40181.css",
+    "main.js": "/static/js/main.cf6ac927.js",
     "static/js/453.d40afe59.chunk.js": "/static/js/453.d40afe59.chunk.js",
     "static/media/인아트_영수증 배경@4x.png": "/static/media/인아트_영수증 배경@4x.0b5dca53884840558ff6.png",
     "static/media/wallpaper.jpg": "/static/media/wallpaper.80dacfb3a948dedd3f8f.jpg",
+    "static/media/wallpaper-receipt.jpg": "/static/media/wallpaper-receipt.62d1863f1d84122f2166.jpg",
     "static/media/인아트_로고-누끼.png": "/static/media/인아트_로고-누끼.161cafa9d651ae7cfb9f.png",
     "index.html": "/index.html",
-    "main.bfe3f7b7.css.map": "/static/css/main.bfe3f7b7.css.map",
-    "main.8a833e8e.js.map": "/static/js/main.8a833e8e.js.map",
+    "main.6dc40181.css.map": "/static/css/main.6dc40181.css.map",
+    "main.cf6ac927.js.map": "/static/js/main.cf6ac927.js.map",
     "453.d40afe59.chunk.js.map": "/static/js/453.d40afe59.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bfe3f7b7.css",
-    "static/js/main.8a833e8e.js"
+    "static/css/main.6dc40181.css",
+    "static/js/main.cf6ac927.js"
   ]
 }
