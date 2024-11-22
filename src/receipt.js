@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
-import inartLogo from './image/inartLogo.png'; 
+import inartLogo from './image/inartLogo.png';
 import wallpaperReceipt from './image/wallpaper-receipt.jpg'; // 배경 이미지 임포트
 import qrCodeImage from './image/qrcode.png'; // QR 코드 PNG 파일 임포트
 import './receipt.css'; // CSS 파일 가져오기
@@ -63,7 +63,7 @@ const ReceiptPage = () => {
         
         // receiptContainer의 크기를 계산
         const { offsetWidth, offsetHeight } = receiptContainer;
-    
+
         html2canvas(receiptContainer, {
             scale: 2, // 원하는 배율 설정 (해상도 향상)
             width: offsetWidth,
@@ -85,14 +85,14 @@ const ReceiptPage = () => {
         // 홈 버튼 클릭 시 홈 페이지로 이동
         setItems([]); // 상태 초기화
         setName('');
-        setDate('')
+        setDate('');
         navigate('/'); // 홈 페이지로 이동
         window.location.reload(); // 페이지 새로 고침
     };
 
     return (
         <div className="receipt-page">
-            <div className="receipt-container">
+            <div className="receipt-container" style={{ overflow: 'hidden', maxHeight: '100vh', position: 'relative' }}>
                 <img src={inartLogo} alt="inartLogo" className="logo" />
                 <h2 className="subtitle">MEMORABLE MOMENTS</h2>
                 <p className="order-info">추억의 한 조각들</p>
