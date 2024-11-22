@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
-import inartLogo from './image/inartLogo.png';
-import wallpaperReceipt from './image/wallpaper-receipt.jpg'; // 배경 이미지 임포트
+import inartLogo from './image/inartLogo.png'; 
+import wallpaperReceipt from './image/wallpaper-receipt.png'; // 배경 이미지 임포트
 import qrCodeImage from './image/qrcode.png'; // QR 코드 PNG 파일 임포트
 import './receipt.css'; // CSS 파일 가져오기
 
@@ -58,20 +58,27 @@ const ReceiptPage = () => {
     // 합계 계산 (각 가격에 100 곱하기)
     const total = items.reduce((sum, item) => sum + (item.price * 100 || 0), 0);
 
-     const handleDownload = () => {
+    const handleDownload = () => {
         const receiptContainer = document.querySelector('.receipt-container');
     
-        // 전체 영수증의 크기를 계산
-        const { scrollWidth, scrollHeight } = receiptContainer;
+        // 영수증의 전체 크기를 계산
+        const totalHeight = receiptContainer.scrollHeight; // 전체 높이
+        const totalWidth = receiptContainer.scrollWidth; // 전체 너비
+    
+        // 스크롤을 비활성화
+        const originalOverflow = receiptContainer.style.overflow;
+        receiptContainer.style.overflow = 'visible';
     
         html2canvas(receiptContainer, {
             scale: 2, // 해상도 향상
-            useCORS: true, // CORS를 사용하여 외부 이미지 로드
-            width: scrollWidth, // 전체 너비
-            height: scrollHeight, // 전체 높이
+            allowTaint: true, // CORS 문제 우회
+            width: totalWidth, // 전체 너비
+            height: totalHeight, // 전체 높이
             scrollX: 0, // 스크롤 X 위치
-            scrollY:-window.scrollY
+            scrollY: 0, // 스크롤 Y 위치
+            backgroundColor: null // 투명 배경으로 설정
         }).then(canvas => {
+            // 배경이 포함된 영수증 이미지 생성
             canvas.toBlob(blob => {
                 const link = document.createElement('a');
                 link.href = window.URL.createObjectURL(blob);
@@ -80,23 +87,28 @@ const ReceiptPage = () => {
             });
         }).catch(error => {
             console.error('Error generating receipt image:', error);
+        }).finally(() => {
+            // 원래의 스크롤 상태 복원
+            receiptContainer.style.overflow = originalOverflow;
         });
     };
+    
+    
 
-
+    
 
     const handleHomeClick = () => {
         // 홈 버튼 클릭 시 홈 페이지로 이동
         setItems([]); // 상태 초기화
         setName('');
-        setDate('');
+        setDate('')
         navigate('/'); // 홈 페이지로 이동
         window.location.reload(); // 페이지 새로 고침
     };
 
     return (
         <div className="receipt-page">
-            <div className="receipt-container" style={{ overflow: 'hidden', maxHeight: '100vh', position: 'relative' }}>
+            <div className="receipt-container">
                 <img src={inartLogo} alt="inartLogo" className="logo" />
                 <h2 className="subtitle">MEMORABLE MOMENTS</h2>
                 <p className="order-info">추억의 한 조각들</p>
