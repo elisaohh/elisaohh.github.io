@@ -64,6 +64,8 @@ const ReceiptPage = () => {
         html2canvas(receiptContainer, {
             scale: 2, // 해상도 향상
             useCORS: true, // CORS를 사용하여 외부 이미지 로드
+            width: scrollWidth, // 전체 너비
+            height: scrollHeight, // 전체 높이
             scrollX: 0, // 스크롤 X 위치
             scrollY: 0, // 스크롤 Y 위치
         }).then(canvas => {
