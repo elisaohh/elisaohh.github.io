@@ -20,27 +20,33 @@
 .receipt-page {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    min-height: 100vh; /* 최소 높이를 전체 화면으로 설정 */
+    align-items: flex-start; /* 상단 정렬 */
+    padding: 0 20px; /* 좌우 패딩만 유지 */
+    position: fixed; /* 고정 위치 설정 */
+    top: 50px; /* 화면 상단에서 50px 떨어진 위치 */
+    left: 0; /* 왼쪽 정렬 */
+    right: 0; /* 오른쪽 정렬 */
+    height: calc(100vh - 50px); /* 화면 높이에서 50px 제외 */
     overflow-y: auto; /* 세로 스크롤 추가 */
 }
 
 .receipt-container {
-    background-image: url('./image/인아트_영수증 배경@4x.png'); /* 절대 경로로 설정 */
+    background-image: url('./image/인아트_영수증 배경@4x.png'); /* 영수증 배경 이미지 */
     background-size: cover; /* 배경 이미지 크기 설정 */
     background-repeat: no-repeat; /* 반복 방지 */
     border: 0.2px solid #333;
     padding: 20px;
     width: 90%;
     max-width: 400px; /* 영수증의 너비 */
-    overflow-y: auto; /* 세로 스크롤 추가 */
     font-family: "Galmuri11", sans-serif;
     background-color: #fff; /* 배경색 설정 */
-    position: relative;
+    position: relative; /* 상대 위치 설정 */
     line-height: 1.5;
-    margin-top: 400px; /* 영수증 컨테이너를 아래로 내리기 위해 추가 */
+    margin-bottom: 50px; /* 하단 여백 추가 */
 }
+
+
+
 
 .logo {
     display: block;
