@@ -60,7 +60,16 @@ const ReceiptPage = () => {
 
     const handleDownload = () => {
         const receiptContainer = document.querySelector('.receipt-container');
-        html2canvas(receiptContainer).then(canvas => {
+        
+        // receiptContainer의 크기를 계산
+        const { offsetWidth, offsetHeight } = receiptContainer;
+    
+        html2canvas(receiptContainer, {
+            scale: 2, // 원하는 배율 설정 (해상도 향상)
+            width: offsetWidth,
+            height: offsetHeight,
+            useCORS: true // CORS를 사용하여 외부 이미지 로드
+        }).then(canvas => {
             canvas.toBlob(blob => {
                 const link = document.createElement('a');
                 link.href = window.URL.createObjectURL(blob);
