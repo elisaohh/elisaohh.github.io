@@ -70,7 +70,7 @@ const ReceiptPage = () => {
             width: scrollWidth, // 전체 너비
             height: scrollHeight, // 전체 높이
             scrollX: 0, // 스크롤 X 위치
-            scrollY: 0, // 스크롤 Y 위치
+            scrollY:-window.scrollY
         }).then(canvas => {
             canvas.toBlob(blob => {
                 const link = document.createElement('a');
