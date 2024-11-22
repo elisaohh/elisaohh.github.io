@@ -60,15 +60,12 @@ const ReceiptPage = () => {
 
     const handleDownload = () => {
         const receiptContainer = document.querySelector('.receipt-container');
-        
-        // receiptContainer의 크기를 계산
-        const { offsetWidth, offsetHeight } = receiptContainer;
-
+    
         html2canvas(receiptContainer, {
-            scale: 2, // 원하는 배율 설정 (해상도 향상)
-            width: offsetWidth,
-            height: offsetHeight,
-            useCORS: true // CORS를 사용하여 외부 이미지 로드
+            scale: 2, // 해상도 향상
+            useCORS: true, // CORS를 사용하여 외부 이미지 로드
+            scrollX: 0, // 스크롤 X 위치
+            scrollY: 0, // 스크롤 Y 위치
         }).then(canvas => {
             canvas.toBlob(blob => {
                 const link = document.createElement('a');
@@ -80,6 +77,7 @@ const ReceiptPage = () => {
             console.error('Error generating receipt image:', error);
         });
     };
+
 
     const handleHomeClick = () => {
         // 홈 버튼 클릭 시 홈 페이지로 이동
