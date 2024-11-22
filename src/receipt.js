@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // useNavigate 추가
+import { useLocation, useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
-import QRCodeGenerator from './QRCodeGenerator';
 import inartLogo from './image/inartLogo.png'; 
 import wallpaperReceipt from './image/wallpaper-receipt.jpg'; // 배경 이미지 임포트
+import qrCodeImage from './image/qrcode.png'; // QR 코드 PNG 파일 임포트
 import './receipt.css'; // CSS 파일 가져오기
 
 const ReceiptPage = () => {
@@ -134,7 +134,11 @@ const ReceiptPage = () => {
                     <p>LABEL: INART SOCIETY</p>
                 </div>
                 <div className="qr-code-container">
-                    <QRCodeGenerator items={items} name={name} date={date} />
+                    <img 
+                        src={qrCodeImage} // QR 코드 PNG 파일 사용
+                        alt='QR Code' 
+                        style={{ width: '200px', height: '200px' }} // 크기 조정
+                    />
                 </div>
             </div>
 
