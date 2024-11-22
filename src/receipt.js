@@ -58,8 +58,11 @@ const ReceiptPage = () => {
     // 합계 계산 (각 가격에 100 곱하기)
     const total = items.reduce((sum, item) => sum + (item.price * 100 || 0), 0);
 
-    const handleDownload = () => {
+     const handleDownload = () => {
         const receiptContainer = document.querySelector('.receipt-container');
+    
+        // 전체 영수증의 크기를 계산
+        const { scrollWidth, scrollHeight } = receiptContainer;
     
         html2canvas(receiptContainer, {
             scale: 2, // 해상도 향상
@@ -79,6 +82,7 @@ const ReceiptPage = () => {
             console.error('Error generating receipt image:', error);
         });
     };
+
 
 
     const handleHomeClick = () => {
